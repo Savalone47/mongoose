@@ -14,4 +14,3 @@ const userSchema = Schema({
 	, lastname: String
 });
 const User = mongoose.model('User', userSchema);
-
