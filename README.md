@@ -1,27 +1,26 @@
-# MEAN Stack Angular Nodejs Mongodb[![MIT license](http://img.shields.io/badge/license-MIT-lightgrey.svg)](http://opensource.org/licenses/MIT)
+# Nodejs Express Mongodb[![MIT license](http://img.shields.io/badge/license-MIT-lightgrey.svg)](http://opensource.org/licenses/MIT)
 
-This is the MEAN stack development project with angular6, nodejs, expressjs, mongodb developed by [Angular CLI](https://github.com/angular/angular-cli) and [visual studio code](https://code.visualstudio.com/) tools.
+## mongoose CRUD
 
-This project uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_bundle)):
-* [**M**ongoose.js](http://www.mongoosejs.com) ([MongoDB](https://www.mongodb.com)): database
-* [**E**xpress.js](http://expressjs.com): backend framework
-* [**A**ngular 6](https://angular.io): frontend framework
-* [**N**ode.js](https://nodejs.org): runtime environment
+`````
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const url = 'mongodb://localhost:27017/test';
 
-Other tools and technologies used:
-* [Angular CLI](https://cli.angular.io): project scaffolding
-* [Bootstrap4](https://getbootstrap.com/docs/4.0/getting-started/introduction/): layout and styles
-* [Angular Material](https://material.angular.io): frontend framework
-* [Font Awesome](http://fontawesome.io): icons
-* [ng2-toastr](https://github.com/PointInside/ng2-toastr): toastr
-* [JSON Web Token](https://jwt.io): user authentication
-* [Angular JWT](https://github.com/auth0/angular2-jwt/tree/v1.0): JWT helper for Angular
-* [Bcrypt.js](https://github.com/dcodeIO/bcrypt.js): password encryption
+mongoose.connect(url,{ useNewUrlParser: true}, function () {
+	const user1 = new User({firstname: "John", lastname: "Patrick"});
+	user1.save(function(err){
+		if (err) console.log('Error', err);
+		console.log(user1);
+	});
+});
+const userSchema = Schema({
+	firstname: String
+	, lastname: String
+});
+const User = mongoose.model('User', userSchema);
 
-## Prerequisites
-1. Install [Node.js](https://nodejs.org) and [MongoDB](https://www.mongodb.com)
-2. From project root folder install all the dependencies: `npm i`
-
+`````
 ## RUN
 1. Run `mongod` and `mongo` serices (If you get any error like connection faild, just create the folder C:\data\db)
 2. `npm run dev`: concurrently execute MongoDB, Angular build, TypeScript compiler and Express server.
